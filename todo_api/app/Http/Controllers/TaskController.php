@@ -29,7 +29,7 @@ class TaskController extends Controller
     {
         // logic to create a task record goes here
 
-        $rules=['name'=>'required'];
+        $rules=['name'=>['required','regex:/(^[a-zA-Z ]*$)/']];
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()){
             return response()->json($validator->errors(), 400);
